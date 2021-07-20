@@ -16,7 +16,7 @@ export default {
         const embed: MessageEmbed = msg.embeds[0]
         embed.setFooter("Giveaway Ended.")  //edit the embed
         embed.setColor('#f44336')  //red
-        embed.addField('Winner:', winner ? `${winner} (${winner.tag})` : "No winners this time everyone's a loser LMAO! :joy: ")
+        embed.addField('Winner:', winner ? `${winner} (${winner.tag})` : "No winners this time everyone's a loser LMAO! :KEKW: ")
         msg.edit(embed) //place newly edited embed in the message to edit the message to show our winner!
     }
 }
