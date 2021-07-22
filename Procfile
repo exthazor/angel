@@ -1,1 +1,1 @@
-ECHO is on.
+worker: node dist/bot.js
