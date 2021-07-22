@@ -17,6 +17,8 @@
     "@types/ms": "^0.7.31"
   },
   "scripts": {
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
     "start": "node dist/bot.js",
     "build": "tsc"
   },
