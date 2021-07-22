@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("replies")
 export class Replies {
@@ -11,6 +11,6 @@ export class Replies {
   @Column({ type: "varchar", length: 22 })
   user!: string;
 
-  @Column({ type: "string", array: true })
-  sender!: string[];
+  @Column({ type: "text", length: 122 })          //array functionality to be added in the future
+  roast!: string;
 }

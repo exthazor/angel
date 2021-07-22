@@ -1,6 +1,6 @@
 import { Command } from "discord-akairo";
 import { Message, MessageEmbed } from "discord.js";
-import ms from "ms"
+import ms from "ms";
 
 import { Repository } from "typeorm";
 import { Giveaways } from "../../models/Giveaways";

@@ -2,6 +2,7 @@ import { ConnectionManager } from "typeorm"
 import { Warns } from "../models/Warns"
 import { dbName } from "../config" 
 import { Giveaways } from "../models/Giveaways"
+import { Replies } from "../models/Replies"
 
 const connectionManager: ConnectionManager = new ConnectionManager()
 connectionManager.create({
@@ -10,7 +11,8 @@ connectionManager.create({
     database: "./db.sqlite",
     entities: [
         Warns,   //each of our database models
-        Giveaways
+        Giveaways,
+        Replies
     ]
 })
 
