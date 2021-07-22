@@ -6,7 +6,7 @@ import { Replies } from "../models/Replies"
 
 const connectionManager: ConnectionManager = new ConnectionManager()
 connectionManager.create({
-    name: dbName,
+    name: process.env.dbName,
     type: "sqlite",
     database: "./db.sqlite",
     entities: [
