@@ -1,6 +1,6 @@
 import { ConnectionManager } from "typeorm"
 import { Warns } from "../models/Warns"
-//import { dbName } from "../config" 
+import { dbName } from "../config" 
 import { Giveaways } from "../models/Giveaways"
 import { Replies } from "../models/Replies"
 

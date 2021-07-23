@@ -2,7 +2,7 @@ import { AkairoClient, CommandHandler, ListenerHandler } from "discord-akairo";
 import { DiscordAPIError } from "discord.js";
 import { Message } from "discord.js";
 import { join } from "path";
-//import { prefix, owners, dbName } from "../config";
+import { prefix, owners, dbName } from "../config";
 import { Connection } from "typeorm"
 import Database from "../structures/Database"
 
@@ -28,7 +28,7 @@ export default class BotClient extends AkairoClient{
 
     public commandHandler: CommandHandler = new CommandHandler(this, {
         directory: join(__dirname, "..", "commands"),
-        prefix: process.env.prefix,
+        prefix: prefix,
         allowMention: true,
         handleEdits: true,
         commandUtil: true,
@@ -46,7 +46,7 @@ export default class BotClient extends AkairoClient{
             },
             otherwise: ""
         },
-        ignorePermissions: process.env.owners
+        ignorePermissions: owners
     })
 
     public constructor (config: BotOptions){
