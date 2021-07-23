@@ -7,7 +7,7 @@ export default class ReplyCommand extends Command{
     public constructor(){
         super("roast", {
             aliases: ["roast"],
-            category: "Public Commands",
+            category: "Fun Commands",
             description: {
                 content: "Respond to user custom roasts",
                 usage: "roast [ member ]",
