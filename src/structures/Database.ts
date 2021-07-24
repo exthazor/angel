@@ -8,11 +8,10 @@ const connectionManager: ConnectionManager = new ConnectionManager()
 connectionManager.create({
     name: dbName,
     type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "entropy",
-    password: "kEYBOARDS7!",
-    database: "AngDB",
+    url: process.env.DATABASE_URL,
+    extra:{
+        ssl: true
+    },
     entities: [
         Warns,   //each of our database models
         Giveaways,
