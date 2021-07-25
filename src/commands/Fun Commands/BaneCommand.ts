@@ -34,7 +34,7 @@ export default class BaneCommand extends Command{
         }
         else {
             let output_text = sentence.replace(/l/g,"r").replace(/e/g, "eeeeee").replace(/o/g, "oooooooo")
-            output_text+=" <:Bane:863137506786017301>"
+            output_text+=" <:baneemoji:863137506786017301>"
             return message.util.send(output_text)
             }
     }
