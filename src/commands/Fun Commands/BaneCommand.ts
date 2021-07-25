@@ -30,7 +30,7 @@ export default class BaneCommand extends Command{
         
         if(sentence == null){
             let replies: string[] = ["Creeeeboooos why did you change the song", "I raav you Creeeboooos", "it fucking hurts everybody ignores me on the server", "You guys are hiding. When I go offline you jump in lmao", "Creeeeboooos don't change the song for fuck's sake!", "msst will you be my girfriend"]
-            return message.util.send(replies[Math.floor(Math.random() * replies.length)] + ` <:bane:868210434765885440>`)
+            return message.util.send(replies[Math.floor(Math.random() * replies.length)] + ` <:baneemoji:863137506786017301>`)
         }
         else {
             let output_text = sentence.replace(/l/g,"r").replace(/e/g, "eeeeee").replace(/o/g, "oooooooo")
