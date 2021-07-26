@@ -2,20 +2,30 @@ import { Listener } from "discord-akairo";
 import { TextChannel, Message } from "discord.js";
 import { Repository } from "typeorm";
 import { Giveaways } from "../../models/Giveaways";
+import { Birthdays } from "../../models/Birthdays";
 import GiveawayManager from "../../structures/giveaways/GiveawayManager";
+import BirthdayManager from "../../structures/birthdays/BirthdayManager"
+import BotClient from "../../client/BotClient";
+import {client} from "../../bot" 
 
 export default class ReadyListener extends Listener {
+
   public constructor() {
     super("ready", {
       emitter: "client",
       event: "ready",
       category: "client",
-    });
+    })
+
   }
 
   public exec(): void {
+    
+
     const giveawayRepo: Repository<Giveaways> =
       this.client.db.getRepository(Giveaways);
+
+    const birthdayRepo: Repository<Birthdays> = this.client.db.getRepository(Birthdays)
 
     console.log(`*${this.client.user.tag}* is now online and ready!`);
 
@@ -34,6 +44,18 @@ export default class ReadyListener extends Listener {
 
           GiveawayManager.end(giveawayRepo, msg);
         });
-    }, 3e5); 
+
+        const birthday: Birthdays[] = await birthdayRepo.find({date: new Date()});
+        console.log(birthday)
+        if(birthday.length == 1){
+          BirthdayManager.WishBirthday(birthday, client)
+        }
+        if(birthday.length > 1){
+          //kinda sus bro ngl
+        }
+    }, 3e3); 
+
   }
+
+
 }
