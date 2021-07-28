@@ -4,26 +4,50 @@ import { Message, MessageEmbed, MessageReaction, Client, Guild, GuildMember, Use
 import { Repository } from "typeorm"
 import BotClient from "../../client/BotClient"
 import { Birthdays } from "../../models/Birthdays"
+import { guildID } from "../../config"
 
 export default{
-    async WishBirthday(birthday: Birthdays[], client: BotClient){
-        let date = birthday[0].date
-        let userid = birthday[0].user
+    async WishBirthday(birthdays: Birthdays[], client: BotClient){
 
-        client.users.fetch(userid, false).then((user) => {
-            const guild = client.guilds.cache.get('857786438313443348')
-            const member = guild.member(user)
-            var role = member.guild.roles.cache.find(role => role.name === "Birthday");
-            member.roles.add(role);
-            user.send('Happy birthday! All of us from the Facade hope that the day treats you well and gives you plenty to smile about.' + `❤️`);
+        let text = "Come on everyone! Let's wish a very happy birthday to "
 
-            client.channels.cache.get(`channelID`)
+        for(var birthday of birthdays){
 
-            const channel = client.channels.cache.get(`857786438313443351`)
+            let date = birthday.date
+            let userid = birthday.user
+           
 
-            if (channel.isText()) {
-              (<TextChannel> channel).send(`Come on everyone! Let's wish ${member.user.id} a happy birthday!`)
+            client.users.fetch(userid, false).then((user) => {
+                const guild = client.guilds.cache.get(guildID)
+                const member = guild.member(user)
+                var role = member.guild.roles.cache.find(role => role.name === "Birthday");
+                member.roles.add(role);
+                user.send(`Happy birthday ${user.username}! All of us from the Facade server hope that the day treats you well and gives you plenty to smile about.` + ` ❤️`);
+                const channel = client.channels.cache.get(`794298702403076128`)
+                text.concat(`${"<@" + member.user.id + ">"}  `)
+
+                // if (channel.isText()) {
+                // (<TextChannel> channel).send(`Come on everyone! Let's wish ${"<@" + member.user.id + ">"} a happy birthday!`)
+                // }
+            })
+           
+        }
+        text.concat("!!!")  
+
+        setTimeout(async => {
+            for(var birthday of birthdays){
+
+                let date = birthday.date
+                let userid = birthday.user
+
+                client.users.fetch(userid, false).then((user) => {
+                    const guild = client.guilds.cache.get(guildID)
+                    const member = guild.member(user)
+                    var role = member.guild.roles.cache.find(role => role.name === "Birthday");
+                    member.roles.remove(role)
+                })
             }
-        })
+        }, 8.64e7)
+        
     }
 }

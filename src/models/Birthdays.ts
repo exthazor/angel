@@ -8,6 +8,7 @@ export class Birthdays {
   @Column({ type: "varchar", length: 22 })
   user!: string;
 
-  @Column({ type: "date"})
-  date!: Date;
+  @Column({ type: "varchar", length: 22 })
+  date!: String;
+
 }

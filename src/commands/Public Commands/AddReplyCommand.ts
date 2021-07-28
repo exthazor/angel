@@ -12,7 +12,7 @@ export default class AddReplyCommand extends Command{
                 content: "Adds user custom roasts",
                 usage: "add [ user ] [ roast ]",
                 examples: [
-                    "add @Host#0001 why do you spread rumour?",
+                    "ang add @Host#0001 why do you spread rumour?",
                 ]
             },
             ratelimit: 3,

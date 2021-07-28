@@ -4,28 +4,25 @@ import { Repository } from "typeorm";
 import { Giveaways } from "../../models/Giveaways";
 import { Birthdays } from "../../models/Birthdays";
 import GiveawayManager from "../../structures/giveaways/GiveawayManager";
-import BirthdayManager from "../../structures/birthdays/BirthdayManager"
-import BotClient from "../../client/BotClient";
-import {client} from "../../bot" 
+import BirthdayManager from "../../structures/birthdays/BirthdayManager";
+import { client } from "../../bot";
+import moment from "moment-timezone";
 
 export default class ReadyListener extends Listener {
-
   public constructor() {
     super("ready", {
       emitter: "client",
       event: "ready",
       category: "client",
-    })
-
+    });
   }
 
   public exec(): void {
-    
-
     const giveawayRepo: Repository<Giveaways> =
       this.client.db.getRepository(Giveaways);
 
-    const birthdayRepo: Repository<Birthdays> = this.client.db.getRepository(Birthdays)
+    const birthdayRepo: Repository<Birthdays> =
+      this.client.db.getRepository(Birthdays);
 
     console.log(`*${this.client.user.tag}* is now online and ready!`);
 
@@ -45,17 +42,13 @@ export default class ReadyListener extends Listener {
           GiveawayManager.end(giveawayRepo, msg);
         });
 
-        const birthday: Birthdays[] = await birthdayRepo.find({date: new Date()});
-        console.log(birthday)
-        if(birthday.length == 1){
-          BirthdayManager.WishBirthday(birthday, client)
-        }
-        if(birthday.length > 1){
-          //kinda sus bro ngl
-        }
-    }, 3e3); 
+      let datee = moment.utc();
+      datee.set({ second: 0, year: 2001 });
+      let dinga = datee.format("YYYY-MM-DD hh:mm:ss");
 
+      const birthday: Birthdays[] = await birthdayRepo.find({ date: dinga });
+
+      BirthdayManager.WishBirthday(birthday, client);
+    }, 6e4);
   }
-
-
 }

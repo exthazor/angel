@@ -1,36 +1,33 @@
 import { Command } from "discord-akairo";
 import { Message, GuildMember, MessageEmbed, ImageSize } from "discord.js";
-import moment from "moment";
+import moment from "moment-timezone";
 import { Birthdays } from "../../models/Birthdays";
 import { Repository } from "typeorm";
 
 export default class SetBirthdayCommand extends Command {
   public constructor() {
     super("setbirthday", {
-      aliases: ["setbirthday"],
+      aliases: ["setbirthday", "setbday"],
       category: "Public Commands",
       description: {
         content: "Set your birthday",
         usage: "setbirthday [ date ] [ zone ]",
         examples: [
-          "setbirthday March 17 2004 zone= Asia/Calcutta",
-          "setbirthay 2nd December 1981",
-          "setbirthay 29 June 2012 zone= America/Los_Angeles",
-          "setbirthay 1st August 1998 zone= Europe/Berlin",
+          "setbirthday March 17 zone= Asia/Calcutta",
+          "setbirthay 2nd December",
+          "setbirthay 29 June zone= America/Los_Angeles",
+          "setbirthay 1st August zone= Europe/Berlin",
         ],
       },
       ratelimit: 3,
       args: [
         {
-          id: "date",
-          type: (msg: Message, str: string) => {
-            var date = moment(str);
-            return date.format("YYYY-MM-DD");
-          },
+          id: "datestring",
+          type: "string",
           match: "rest",
           prompt: {
             start: (msg: Message) =>
-              `${msg.author}, you must provide a date. Something alone the lines of "17 August 2011"`,
+              `${msg.author}, you must provide a date. Something alone the lines of "17 August"`,
             retry: (msg: Message) =>
               `${msg.author}, you must provide a valid date!`,
           },
@@ -48,25 +45,40 @@ export default class SetBirthdayCommand extends Command {
 
   public async exec(
     message: Message,
-    { date, zone }: { date: Date; zone: string }
+    { datestring, zone }: { datestring: string; zone: string }
   ): Promise<Message> {
+    
+    let date = moment.tz(datestring, zone)
+
+    let offset = date.utcOffset()
+
+    let newdate = date.subtract(offset, "minutes").subtract(offset, "minutes")
+
+    let newdatee = newdate.format("YYYY-MM-DD hh:mm:ss")
+
+ 
+//dateString = dateString.split(' ').slice(0, 4).join(' ');
+console.log(newdate);
+console.log(newdatee);
+
+
     const birthdayRepo: Repository<Birthdays> =
       this.client.db.getRepository(Birthdays);
     const birthdays: Birthdays[] = await birthdayRepo.find({
       user: message.author.id,
     });
-    date.toLocaleString("en-US", { timeZone: zone });
+
     if (!birthdays.length) {
 
         await birthdayRepo.insert({
             user: message.author.id,
-            date: date,
+            date: newdatee,
           });
           return message.util.send(`Birthday saved!`);
       
     } else {
 
-        await birthdayRepo.createQueryBuilder().update(Birthdays).set({date: date}).where({user: message.author.id}).execute()
+        await birthdayRepo.createQueryBuilder().update(Birthdays).set({date: newdatee}).where({user: message.author.id}).execute()
             return message.util.send(`Birthday updated!`);
     }
   }
