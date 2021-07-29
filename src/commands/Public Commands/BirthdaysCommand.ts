@@ -3,14 +3,16 @@ import { Command } from "discord-akairo";
 import { Repository, ILike } from "typeorm";
 import { Birthdays } from "../../models/Birthdays";
 import moment from "moment";
+import { off } from "process";
+import { GetBirthdays } from "../../models/GetBirthdays";
 
 export default class RecentBirthdayCommand extends Command{
     public constructor(){
-        super("recentbirthday", {
-            aliases: ["recentbirthday", "recentbirthdays", "recentbday", "recentbdays", "resentbirthday", "resentbirthdays", "resentbday", "resentbdays", "recent", "resent"],
+        super("birthdays", {
+            aliases: ["birthdays", "birthday"],
             category: "Public Commands",
             description: {
-                content: "See all the upcoming birthdays for the current month",
+                content: "See all the birthdays for the current month",
                 usage: "recentbirthdays",
                 examples: [
                 "ang recentbirthdays"
@@ -21,29 +23,21 @@ export default class RecentBirthdayCommand extends Command{
     }
 
     public async exec(message: Message){
-        const birthdayRepo: Repository<Birthdays> =
-        this.client.db.getRepository(Birthdays);
+        const getBirthdayRepo: Repository<GetBirthdays> =
+        this.client.db.getRepository(GetBirthdays);
 
-        let currentMonth = moment.utc().format("MM")
+        let currentMonth = parseInt(moment.utc().format("MM"))
         console.log(currentMonth)
 
-        const birthdays: Birthdays[] = await birthdayRepo.find({
-            date: ILike(`_____%${currentMonth}%____________`)
+        const birthdays: GetBirthdays[] = await getBirthdayRepo.find({
+            month: currentMonth
         });
-        
-        // let users = birthdayRepo
-        // .createQueryBuilder("user")
-        // .where("birthdays.date like :date", { date:`_____%${currentMonth}%____________` })
-        // .getMany();
 
         let text = ""
 
         for (const birthday of birthdays) {
 
-            let birthdate = moment(birthday.date.toString(), "YYYY-MM-DD hh:mm:ss")
-            let hehe = birthdate.format("MMMM Do")
-
-            text += ` ${"<@" + birthday.user + ">"}  : \`${hehe}\`\n\n`;
+            text += ` ${"<@" + birthday.user + ">"}  : \`${birthday.date}\`\n\n`;
           }
 
 
@@ -56,10 +50,6 @@ export default class RecentBirthdayCommand extends Command{
             const poll = await message.channel.send(`🎁 ${desc}`, {
                 embed: Embed
             })
-
-
-
-
 
     } 
 } 

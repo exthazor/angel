@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("birthdays")
-export class Birthdays {
+@Entity("getbirthdays")
+export class GetBirthdays {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -11,7 +11,6 @@ export class Birthdays {
   @Column({ type: "varchar", length: 22 })
   date!: string;
 
-  @Column({ type: "int" })
-  offset!: number;
-
+  @Column({ type: "int", nullable: true})
+  month!: number;
 }

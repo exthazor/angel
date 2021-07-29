@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { Giveaways } from "../../models/Giveaways";
 import { Birthdays } from "../../models/Birthdays";
 import GiveawayManager from "../../structures/giveaways/GiveawayManager";
-import BirthdayManager from "../../structures/birthdays/BirthdayManager";
+import BirthdayManager from "../../structures/birthdays/BirthdayManager"
 import { client } from "../../bot";
 import moment from "moment-timezone";
 
@@ -45,10 +45,14 @@ export default class ReadyListener extends Listener {
       let datee = moment.utc();
       datee.set({ second: 0, year: 2001 });
       let dinga = datee.format("YYYY-MM-DD hh:mm:ss");
-
       const birthday: Birthdays[] = await birthdayRepo.find({ date: dinga });
+      if(birthday.length>0){
 
-      BirthdayManager.WishBirthday(birthday, client);
+        let greeter = new BirthdayManager()
+        greeter.WishBirthday(birthday, client)
+       
+      }
+ 
     }, 6e4);
   }
 }
