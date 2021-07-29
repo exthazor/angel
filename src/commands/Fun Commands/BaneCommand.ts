@@ -50,10 +50,11 @@ export default class BaneCommand extends Command{
 
 
             return message.util.send(replies[randomNumber] + ` <:bane:868210434765885440>`)
+
         }
         else {
             let output_text = sentence.replace(/l/g,"r").replace(/e/g, "eeeeee").replace(/o/g, "oooooooo")
-            output_text+=" <:bane:868210434765885440>"
+            output_text+=" <:baneemoji:863137506786017301>"
             return message.util.send(output_text)
             }
     }
