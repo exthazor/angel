@@ -35,7 +35,15 @@ export default class ReplyCommand extends Command{
         
         if(!replies.length) return message.util.reply("Alice and I love this person, we will try to get them to join our server and feed them with lies.");
 
-        const randomReply = replies[Math.floor(Math.random() * replies.length)];
+        let randomNumber = Math.floor(Math.random() * replies.length)
+            var arr = new Array
+            arr.push(randomNumber)
+            if((arr.length > 1) && (arr[arr.length-1] == arr[arr.length-2])){
+                (randomNumber+=1)%replies.length
+                arr.shift()
+            }
+
+        const randomReply = replies[randomNumber];
         return message.util.send(randomReply.roast)
     }
 }

@@ -2,6 +2,7 @@ import { Command } from "discord-akairo";
 import { Message, GuildMember } from "discord.js";
 
 export default class BaneCommand extends Command{
+    static arr = new Array
     public constructor(){
         super("bane", {
             aliases: ["bane", "adam"],
@@ -14,7 +15,7 @@ export default class BaneCommand extends Command{
                     "bane is this the real life?"
                 ]
             },
-            ratelimit: 3,
+            ratelimit: 69,
             args:[
                 {
                     id: "sentence",
@@ -23,6 +24,7 @@ export default class BaneCommand extends Command{
                 }
             ]
         })
+         
     }
 
     public exec(message: Message, {sentence}: {sentence: string}): Promise<Message>{
@@ -30,8 +32,24 @@ export default class BaneCommand extends Command{
         
         if(sentence == null){
 
+             
             let replies: string[] = ["Creeeeboooos why did you change the song", "I raav you Creeeboooos", "it fucking hurts everybody ignores me on the server", "You guys are hiding. When I go offline you jump in lmao", "Creeeeboooos don't change the song for fuck's sake!", "msst will you be my girfriend", "guys you want to phasmophobia", "Creeboooos show your face", "Turn on the camera Cleebooooos"]
-            return message.util.send(replies[Math.floor(Math.random() * replies.length)] + ` <:baneemoji:863137506786017301>`)
+
+            let randomNumber = Math.floor(Math.random() * replies.length)
+            
+            BaneCommand.arr.push(randomNumber)
+
+            if(( BaneCommand.arr.length > 1) && (BaneCommand.arr[BaneCommand.arr.length-1] == BaneCommand.arr[BaneCommand.arr.length-2])){
+                BaneCommand.arr.pop()
+                randomNumber+=Math.floor(Math.random() * replies.length) + 1
+                randomNumber%=BaneCommand.arr.length     
+            }
+            if(BaneCommand.arr.length > 3){
+                BaneCommand.arr.shift()
+            }
+
+
+            return message.util.send(replies[randomNumber] + ` <:bane:868210434765885440>`)
 
         }
         else {

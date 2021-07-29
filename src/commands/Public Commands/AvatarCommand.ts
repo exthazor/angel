@@ -10,10 +10,10 @@ export default class AvatarCommand extends Command{
                 content: "Display the avatar of a member",
                 usage: "avatar [ member ]",
                 examples: [
-                    "avatar",
-                    "avatar @Host#0001",
-                    "avatar @Captain Entropy#8973",
-                    "avatar host"
+                    "ang avatar",
+                    "ang avatar @Host#0001",
+                    "ang avatar @Captain Entropy#8973",
+                    "ang avatar host"
                 ]
             },
             ratelimit: 3,

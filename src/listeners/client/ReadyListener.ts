@@ -2,7 +2,11 @@ import { Listener } from "discord-akairo";
 import { TextChannel, Message } from "discord.js";
 import { Repository } from "typeorm";
 import { Giveaways } from "../../models/Giveaways";
+import { Birthdays } from "../../models/Birthdays";
 import GiveawayManager from "../../structures/giveaways/GiveawayManager";
+import BirthdayManager from "../../structures/birthdays/BirthdayManager"
+import { client } from "../../bot";
+import moment from "moment-timezone";
 
 export default class ReadyListener extends Listener {
   public constructor() {
@@ -16,6 +20,9 @@ export default class ReadyListener extends Listener {
   public exec(): void {
     const giveawayRepo: Repository<Giveaways> =
       this.client.db.getRepository(Giveaways);
+
+    const birthdayRepo: Repository<Birthdays> =
+      this.client.db.getRepository(Birthdays);
 
     console.log(`*${this.client.user.tag}* is now online and ready!`);
 
@@ -34,6 +41,18 @@ export default class ReadyListener extends Listener {
 
           GiveawayManager.end(giveawayRepo, msg);
         });
-    }, 3e5); 
+
+      let datee = moment.utc();
+      datee.set({ second: 0, year: 2001 });
+      let dinga = datee.format("YYYY-MM-DD hh:mm:ss");
+      const birthday: Birthdays[] = await birthdayRepo.find({ date: dinga });
+      if(birthday.length>0){
+
+        let greeter = new BirthdayManager()
+        greeter.WishBirthday(birthday, client)
+       
+      }
+ 
+    }, 6e4);
   }
 }

@@ -16,7 +16,7 @@ export default class GiveawayCommand extends Command {
                 content: "Start a giveaway",
                 usage: "giveaway [ time ] [ item ]",
                 examples: [
-                    "giveaway 10m Discord Nitro"
+                    "ang giveaway 10m Discord Nitro"
                 ]
             },
             ratelimit: 3,
