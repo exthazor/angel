@@ -49,7 +49,7 @@ export default class BaneCommand extends Command{
             }
 
 
-            return message.util.send(replies[randomNumber] + ` <:bane:868210434765885440>`)
+            return message.util.send(replies[randomNumber] + ` <:baneemoji:863137506786017301>`)
 
         }
         else {
