@@ -1,9 +1,7 @@
-import { memory } from "console";
 import { TextChannel } from "discord.js";
-import { Repository } from "typeorm";
 import BotClient from "../../client/BotClient";
 import { Birthdays } from "../../models/Birthdays";
-import { guildID } from "../../config";
+//import { guildID } from "../../config";
 
 export default class BirthdayManager{
 
@@ -33,7 +31,7 @@ export default class BirthdayManager{
       let userid = birthday.user;
 
       await client.users.fetch(userid, false).then((user) => {
-        const guild = client.guilds.cache.get(guildID);
+        const guild = client.guilds.cache.get(process.env.guildID);
         const member = guild.member(user);
         var role = member.guild.roles.cache.find(
           (role) => role.name === "Birthday"
@@ -47,7 +45,7 @@ export default class BirthdayManager{
         text+= `${"<@" + member.user.id + ">"}  `;
       });
     }
-    const channel = client.channels.cache.get(`794298702403076128`);
+    const channel = client.channels.cache.get(`857786438313443351`);
     text+="!!!";
     if (channel.isText()) {
       (<TextChannel>channel).send(
@@ -61,7 +59,7 @@ export default class BirthdayManager{
         let userid = birthday.user;
 
         client.users.fetch(userid, false).then((user) => {
-          const guild = client.guilds.cache.get(guildID);
+          const guild = client.guilds.cache.get(process.env.guildID);
           const member = guild.member(user);
           var role = member.guild.roles.cache.find(
             (role) => role.name === "Birthday"
@@ -69,6 +67,6 @@ export default class BirthdayManager{
           member.roles.remove(role);
         });
       }
-    }, 6e5);
+    }, 8.64e7);
   }
 };

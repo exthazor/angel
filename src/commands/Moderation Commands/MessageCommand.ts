@@ -1,7 +1,5 @@
 import { Command } from "discord-akairo";
 import { Message, TextChannel } from "discord.js";
-import ms from "ms";
-import BotClient from "../../client/BotClient";
 
 export default class MessageCommand extends Command {
   public constructor() {

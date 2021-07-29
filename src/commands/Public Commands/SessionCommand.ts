@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { Message, GuildMember } from "discord.js";
+import { Message } from "discord.js";
 
 export default class SessionCommand extends Command {
   public constructor() {

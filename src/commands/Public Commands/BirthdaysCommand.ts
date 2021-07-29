@@ -1,9 +1,7 @@
 import { Message, MessageEmbed } from "discord.js";
 import { Command } from "discord-akairo";
 import { Repository, ILike } from "typeorm";
-import { Birthdays } from "../../models/Birthdays";
 import moment from "moment";
-import { off } from "process";
 import { GetBirthdays } from "../../models/GetBirthdays";
 
 export default class RecentBirthdayCommand extends Command{

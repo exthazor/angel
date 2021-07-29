@@ -1,10 +1,9 @@
 import { Command } from "discord-akairo";
-import { Message, GuildMember, MessageEmbed, ImageSize } from "discord.js";
+import { Message } from "discord.js";
 import moment from "moment-timezone";
 import { Birthdays } from "../../models/Birthdays";
 import { GetBirthdays } from "../../models/GetBirthdays";
 import { Repository } from "typeorm";
-import { off } from "process";
 
 export default class SetBirthdayCommand extends Command {
   public constructor() {
@@ -49,30 +48,25 @@ export default class SetBirthdayCommand extends Command {
     message: Message,
     { datestring, zone }: { datestring: string; zone: string }
   ): Promise<Message> {
-    
-    let date = moment.tz(datestring, zone)
+    let date = moment.tz(datestring, zone);
 
-    let month = date.month() + 1 
+    let month = date.month() + 1;
 
-    let offset = date.utcOffset()
+    let offset = date.utcOffset();
 
-    let newdate = date.subtract(offset, "minutes").subtract(offset, "minutes")
+    let newdate = date.subtract(offset, "minutes").subtract(offset, "minutes");
 
-    let newdatee = newdate.format("YYYY-MM-DD hh:mm:ss")
+    let newdatee = newdate.format("YYYY-MM-DD hh:mm:ss");
 
-    let newestdate = moment(datestring).format("MMMM Do")
+    let newestdate = moment(datestring).format("MMMM Do");
 
-
- 
-//dateString = dateString.split(' ').slice(0, 4).join(' ');
-console.log(newdate);
-console.log(newdatee);
-
+    console.log(newdate);
+    console.log(newdatee);
 
     const birthdayRepo: Repository<Birthdays> =
       this.client.db.getRepository(Birthdays);
 
-      const getBirthdayRepo: Repository<GetBirthdays> =
+    const getBirthdayRepo: Repository<GetBirthdays> =
       this.client.db.getRepository(GetBirthdays);
 
     const birthdays: Birthdays[] = await birthdayRepo.find({
@@ -80,28 +74,34 @@ console.log(newdatee);
     });
 
     if (!birthdays.length) {
+      await birthdayRepo.insert({
+        user: message.author.id,
+        date: newdatee,
+        offset: offset,
+      });
 
-        await birthdayRepo.insert({
-            user: message.author.id,
-            date: newdatee,
-            offset: offset
-          });
+      await getBirthdayRepo.insert({
+        user: message.author.id,
+        date: newestdate,
+        month: month,
+      });
 
-          await getBirthdayRepo.insert({
-            user: message.author.id,
-            date: newestdate,
-            month: month
-          })
-
-          return message.util.send(`Birthday saved!`);
-      
+      return message.util.send(`Birthday saved!`);
     } else {
+      await birthdayRepo
+        .createQueryBuilder()
+        .update(Birthdays)
+        .set({ date: newdatee })
+        .where({ user: message.author.id })
+        .execute();
 
-        await birthdayRepo.createQueryBuilder().update(Birthdays).set({date: newdatee}).where({user: message.author.id}).execute()
-
-
-            await getBirthdayRepo.createQueryBuilder().update(GetBirthdays).set({date: newestdate}).where({user: message.author.id}).execute()
-            return message.util.send(`Birthday updated!`);
+      await getBirthdayRepo
+        .createQueryBuilder()
+        .update(GetBirthdays)
+        .set({ date: newestdate })
+        .where({ user: message.author.id })
+        .execute();
+      return message.util.send(`Birthday updated!`);
     }
   }
 }
