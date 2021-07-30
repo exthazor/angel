@@ -45,6 +45,8 @@ export default class ReadyListener extends Listener {
       let datee = moment.utc();
       datee.set({ second: 0, year: 2001 });
       let dinga = datee.format("YYYY-MM-DD hh:mm:ss");
+      console.log("Date upodate every minute")
+      console.log(dinga)
       const birthday: Birthdays[] = await birthdayRepo.find({ date: dinga });
       if(birthday.length>0){
 
