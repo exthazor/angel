@@ -1,8 +1,5 @@
-import { TextChannel } from "discord.js";
-import BotClient from "../../client/BotClient";
-import { Birthdays } from "../../models/Birthdays";
-import { guildID } from "../../config";
 
+import { Birthdays } from "../../models/Birthdays";
 export default {
 
      Zodiac_Sign(day, month):string
