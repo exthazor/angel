@@ -48,7 +48,10 @@ export default class ReadyListener extends Listener {
       console.log("Date upodate every minute")
       console.log(dinga)
       const birthday: Birthdays[] = await birthdayRepo.find({ date: dinga });
+      console.log(birthday)
       if(birthday.length>0){
+        
+        console.log("Happy birthday ho gaya vrooo")
 
         let greeter = new BirthdayManager()
         greeter.WishBirthday(birthday, client)
