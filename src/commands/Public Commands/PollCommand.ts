@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { Message, GuildMember, MessageEmbed } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 
 export default class PollCommand extends Command {
   public constructor() {

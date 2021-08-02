@@ -1,6 +1,4 @@
-import { UserFlags } from 'discord.js'
 import { Message, MessageEmbed, MessageReaction, User } from 'discord.js'
-import { endianness } from 'os'
 import { Repository } from 'typeorm'
 import { Giveaways } from '../../models/Giveaways'
 
