@@ -46,7 +46,10 @@ export default class ReadyListener extends Listener {
       currentDate.set({ second: 0, year: 2001 });
       let formattedDate = currentDate.format("YYYY-MM-DD hh:mm:ss");
       const birthday: Birthdays[] = await birthdayRepo.find({ date: formattedDate });
+
       if(birthday.length>0){
+        
+        console.log("Happy birthday ho gaya vrooo")
 
         let greeter = new BirthdayManager()
         greeter.WishBirthday(birthday, client)
