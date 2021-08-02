@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { Message, GuildMember, MessageEmbed } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 
 export default class PollCommand extends Command {
   public constructor() {
@@ -7,9 +7,12 @@ export default class PollCommand extends Command {
       aliases: ["poll"],
       category: "Public Commands",
       description: {
-        content: "Allow users to survey opinion on a topic by enacting a channel-wide poll",
+        content:
+          "Allow users to survey opinion on a topic by enacting a channel-wide poll",
         usage: 'poll "question" "option1" "option 2" "option 3"... ',
-        examples: ['ang poll "Why is the sky blue?" "Science, bitch!" "Because god wants it to." "The sky is blue??"'],
+        examples: [
+          'ang poll "Why is the sky blue?" "Science, bitch!" "Because god wants it to." "The sky is blue??"',
+        ],
       },
       ratelimit: 3,
       args: [
@@ -73,13 +76,9 @@ export default class PollCommand extends Command {
     const Embed = new MessageEmbed().setColor("#FFC0CB").setDescription(text);
 
     const poll = await message.channel.send(`:bar_chart: **${question}**`, {
-        embed: Embed
-    })
-
+      embed: Embed,
+    });
 
     for (const emoji of usedEmojis) await poll.react(emoji);
-
-    console.log(question);
-    console.log(items);
   }
 }

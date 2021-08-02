@@ -42,13 +42,11 @@ export default class ReadyListener extends Listener {
           GiveawayManager.end(giveawayRepo, msg);
         });
 
-      let datee = moment.utc();
-      datee.set({ second: 0, year: 2001 });
-      let dinga = datee.format("YYYY-MM-DD hh:mm:ss");
-      console.log("Date upodate every minute")
-      console.log(dinga)
-      const birthday: Birthdays[] = await birthdayRepo.find({ date: dinga });
-      console.log(birthday)
+      let currentDate = moment.utc();
+      currentDate.set({ second: 0, year: 2001 });
+      let formattedDate = currentDate.format("YYYY-MM-DD hh:mm:ss");
+      const birthday: Birthdays[] = await birthdayRepo.find({ date: formattedDate });
+
       if(birthday.length>0){
         
         console.log("Happy birthday ho gaya vrooo")

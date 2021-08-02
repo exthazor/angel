@@ -1,7 +1,7 @@
  
 import { ConnectionManager } from "typeorm"
 import { Warns } from "../models/Warns"
-//import { dbName } from "../config" 
+import { dbName } from "../config" 
 import { Giveaways } from "../models/Giveaways"
 import { Replies } from "../models/Replies"
 import { Birthdays } from "../models/Birthdays"
@@ -9,12 +9,13 @@ import { GetBirthdays } from "../models/GetBirthdays"
 
 const connectionManager: ConnectionManager = new ConnectionManager()
 connectionManager.create({
-    name: process.env.dbName,
+    name: dbName,
     type: "postgres",
-    url: process.env.DATABASE_URL,
-    extra:{
-        ssl: true
-    },
+    host: "localhost",
+    port: 5432,
+    username: "entropy",
+    password: "kEYBOARDS7!",
+    database: "AngDB",
     entities: [
         Warns,   //each of our database models
         Giveaways,

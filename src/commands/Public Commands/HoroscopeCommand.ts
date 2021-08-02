@@ -4,10 +4,6 @@ import { Repository } from "typeorm";
 import { GetBirthdays } from "../../models/GetBirthdays";
 import HoroscopeManager from "../../structures/birthdays/HoroscopeManager";
 const fetch = require("node-fetch");
-import { request } from "http";
-import moment from "moment";
-
-
 
 export default class HoroscopeCommand extends Command{
     public constructor(){
