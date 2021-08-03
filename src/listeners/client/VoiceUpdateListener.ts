@@ -17,7 +17,7 @@ export default class VoiceUpdateListener extends Listener {
 
     if (newState.channel != null) {
       if (
-        (newState.channel.id == "869972539449937960" || newState.channel.id == "857786438799851570" || newState.channel.id == "858099988462829598" || newState.channel.id == "858102785736572968" || newState.channel.id == "858104385262452806" || newState.channel.id = "869971483907219537") &&
+        (newState.channel.id == "869972539449937960" || newState.channel.id == "857786438799851570" || newState.channel.id == "858099988462829598" || newState.channel.id == "858102785736572968", newState.channel.id == "858104385262452806" || newState.channel.id || "869971483907219537") &&
         oldState.channel == null
       ) {
         let newVoiceChannel = newState.channel;
@@ -31,7 +31,7 @@ export default class VoiceUpdateListener extends Listener {
     }
     if (oldState.channel != null) {
       if (
-        (oldState.channel.id == "869972539449937960" || oldState.channel.id == "857786438799851570" || oldState.channel.id == "858099988462829598" || oldState.channel.id == "858102785736572968" || oldState.channel.id == "858104385262452806" || oldState.channel.id = "869971483907219537") &&
+        (oldState.channel.id == "869972539449937960" || oldState.channel.id == "857786438799851570" || oldState.channel.id == "858099988462829598" || oldState.channel.id == "858102785736572968", oldState.channel.id == "858104385262452806", oldState.channel.id = "869971483907219537") &&
         newState.channel == null
       ) {
         (vcTextChannel as TextChannel).overwritePermissions([{
