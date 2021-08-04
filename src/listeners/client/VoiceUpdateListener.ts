@@ -34,10 +34,9 @@ export default class VoiceUpdateListener extends Listener {
         (oldState.channel.id == "869972539449937960" || oldState.channel.id == "857786438799851570" || oldState.channel.id == "858099988462829598" || oldState.channel.id == "858102785736572968" || oldState.channel.id == "858104385262452806" || oldState.channel.id == "869971483907219537") &&
         newState.channel == null
       ) {
-        (vcTextChannel as TextChannel).overwritePermissions([{
-            id: oldState.member.id,
-            deny: ['VIEW_CHANNEL'],
-        },])
+        (vcTextChannel as TextChannel).createOverwrite(oldState.member.id, {
+          VIEW_CHANNEL: false
+        })
       }
     }
   }
