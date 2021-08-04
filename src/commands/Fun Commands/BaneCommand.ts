@@ -33,7 +33,7 @@ export default class BaneCommand extends Command{
         if(sentence == null){
 
              
-            let replies: string[] = ["Creeeeboooos why did you change the song", "I raav you Creeeboooos", "it fucking hurts everybody ignores me on the server", "You guys are hiding. When I go offline you jump in lmao", "Creeeeboooos don't change the song for fuck's sake!", "msst will you be my girfriend", "guys you want to phasmophobia", "Creeboooos show your face", "Turn on the camera Cleebooooos"]
+            let replies: string[] = ["Creeeeboooos why did you change the song", "I raav you Creeeboooos", "it fucking hurts everybody ignores me on the server", "You guys are hiding. When I go offline you jump in lmao", "Creeeeboooos don't change the song for fuck's sake!", "msst will you be my girfriend", "guys you want to phasmophobia", "Creeboooos show your face", "Turn on the camera Cleebooooos", "I boosted this server give me mod", "Make me DJ I boost server", "I am Angel's favourite singer I sing for her"]
 
             let randomNumber = Math.floor(Math.random() * replies.length)
             
