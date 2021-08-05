@@ -37,7 +37,7 @@ export default class MinecraftCommand extends Command {
         }
     }
 
-    const m = await message.channel.send(`<a:loading:872930514212909097> Loading`);
+    const m = await message.channel.send(`<a:loading:872899456427761694> Loading`);
 
     let json = null;
     
@@ -76,8 +76,6 @@ export default class MinecraftCommand extends Command {
             i++
         }
     }
-    
-
 
     const embed = new MessageEmbed()
         .setDescription(`⛏️ **FACADE MINECRAFT SERVER** ⛏️`)
