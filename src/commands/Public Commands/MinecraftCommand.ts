@@ -78,7 +78,7 @@ export default class MinecraftCommand extends Command {
     }
 
     const embed = new MessageEmbed()
-        .setDescription(`⛏️ **FACADE MINECRAFT SERVER** ⛏️`)
+        .setTitle(`⛏️ **FACADE MINECRAFT SERVER** ⛏️`)
         .addField("Minecraft Version", `\`\`\`${json.raw.vanilla.raw.version.name}\`\`\``)
         .addField(`Seed`, `\`\`\`${seed}\`\`\``)
         .addField(`Players online (${i})`, `\`\`\` ${string_players} \`\`\``)
