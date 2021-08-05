@@ -50,7 +50,7 @@ export default class HelpCommand extends Command {
     }
     const embed = new MessageEmbed()
     .setAuthor(`Help | ${this.client.user.username}`, this.client.user.displayAvatarURL())
-    .setColor("#4caf50")
+    .setColor("ff0000")
     .setFooter(`${this.client.commandHandler.prefix} help [ command ] for more information on a command uwu`)
 
     for(const category of this.handler.categories.values()){
