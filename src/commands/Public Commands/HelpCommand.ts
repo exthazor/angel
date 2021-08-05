@@ -11,7 +11,7 @@ export default class HelpCommand extends Command {
         content:
           "Help command to display a list of available commands and functions that the bot can offer.",
         usage: "help [ command ]",
-        examples: ["help", "help ping"],
+        examples: ["ang help", "ang help ping"],
       },
       ratelimit: 3,
       args: [

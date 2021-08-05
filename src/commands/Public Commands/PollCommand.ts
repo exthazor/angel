@@ -9,7 +9,7 @@ export default class PollCommand extends Command {
       description: {
         content:
           "Allow users to survey opinion on a topic by enacting a channel-wide poll",
-        usage: 'poll "question" "option1" "option 2" "option 3"... ',
+        usage: '"question" "option1" "option 2" "option 3"... ',
         examples: [
           'ang poll "Why is the sky blue?" "Science, bitch!" "Because god wants it to." "The sky is blue??"',
         ],
