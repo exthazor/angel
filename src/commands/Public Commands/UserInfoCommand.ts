@@ -1,5 +1,5 @@
 import { Command } from "discord-akairo";
-import { GuildMember, Message, MessageEmbed } from "discord.js";
+import { Collection, GuildMember, Message, MessageEmbed, Invite } from "discord.js";
 import moment from "moment";
 
 const status = {
@@ -34,7 +34,7 @@ export default class UserInfoCommand extends Command{
           });
     }
 
-    public exec(message: Message, {member}: {member: GuildMember}): Promise<Message> {
+    public async exec(message: Message, {member}: {member: GuildMember}): Promise<Message> {
 
         var permissions = [];
 
@@ -97,6 +97,14 @@ export default class UserInfoCommand extends Command{
         return "No"
       };
 
+
+		const invites:Collection<string, Invite> = await message.guild.fetchInvites()
+        
+		const memberInvites = invites.filter((i) => i.inviter && i.inviter.id === member.user.id);
+
+		let index = 0;
+		memberInvites.forEach((invite) => index += invite.uses);
+
     const embed = new MessageEmbed()
         .setDescription(`**\:busts_in_silhouette: USER INFORMATION \:busts_in_silhouette:**`)
         .setColor(`#800080`)
@@ -114,6 +122,7 @@ export default class UserInfoCommand extends Command{
         .addField("Permissions ", `\`\`\`${permissions.join(', ')}\`\`\``)
         .addField("Joined this server on (DD/MM/YYYY)",`\`\`\`${moment(member.joinedAt).format("DD/MM/YYYY HH:mm")} (${moment(member.joinedAt, 'ddd MMM DD YYYY HH:mm').fromNow()})\`\`\``)
         .addField("Account created on (DD/MM/YYYY)",`\`\`\`${moment(member.user.createdAt).format("DD/MM/YYYY HH:mm")} (${moment(member.user.createdAt, 'ddd MMM DD YYYY HH:mm').fromNow()}) \`\`\``)
+        .addField("Number of people invited",`\`\`\`${index} \`\`\``)
         
     return message.channel.send({embed});
     }
