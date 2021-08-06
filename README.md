@@ -19,7 +19,7 @@ With Angel, you can now:
 *   🍿 Create an event to watch a movie with your friends and get reminders.
 *   ⛏️ Get information about your Minecraft Server like users who are online.
 *   😂 Entertain your members with the funniest memes from Reddit and custom roasts!
-*   🔨 Monitor and Moderate
+*   🔨 Monitor and Moderate <br/><br/>
 And a host of other functions! See below for an exhaustive explaination.
 
 
