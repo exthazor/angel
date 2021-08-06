@@ -52,8 +52,6 @@ Angel has a lot of features, with **3 main categories**:
         `SetBirthday` : Let users set their birthdays. <br />
         `UserInfo` : Get information about any member. For example, the number of people they've invited, nickname, date of joining the server, etc. <br /><br />
 
-[See the full commands list](https://www.atlanta-bot.fr/commands)
-
 
 ## Links
 
