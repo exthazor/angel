@@ -17,7 +17,7 @@ Feel free to add a star ⭐ to the repository to promote the project!
 With Angel, you can now:
 *   🎁 Send your server members a custom Happy Birthday message as soon as it's their birthday in their local time.
 *   🍿 Create an event to watch a movie with your friends and get reminders.
-*   ⛏️ Get information about your Minecraft Server like users who are online.
+*   ⛏️ Get information about your personal Minecraft Server without having to login anywhere!
 *   😂 Entertain your members with the funniest memes from Reddit and custom roasts!
 *   🔨 Monitor and Moderate <br/><br/>
 And a host of other functions! See below for an exhaustive explaination.
