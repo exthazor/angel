@@ -39,7 +39,7 @@ Angel has a lot of features, with **3 main categories**:
         `Roast`: Make the bot roast a particular member with the pre-recorded roasts. Or better yet, make some custom roasts with the `AddRoast Command` and keep the laughter flowing! <br />
         `uwu`: We can't imaginye anyonye w-wouwd actuawwy *screams* darye to u-use this command *sweats*. <br />  <br />
 *   🖨️ **Public**: <br /> <br />
-        `Avatar` : Display the avatar of a member, because you like looking at it a bit too much.  <br />
+        `Avatar` : Display the avatar of a member, because you like looking at them a bit too much you creep.  <br />
         `Birthday` : See all the upcoming birthdays of the month.  <br />
         `Event` : Create events to do stuff together! Allows anyone to convert events to their local timezone with one click <br />
         `Giveaway` : Feeling a bit too generous? Start a giveaway and get a random winner for you to gift something. <br />
